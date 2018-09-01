@@ -1,3 +1,1 @@
-# Terra Chain Contracts
-
-A list of genesis contracts for the Terra network.
+# Terra Chain Permission Contracts
