@@ -30,24 +30,24 @@ contract AllowedTxType is AllowedTxTypeInterface, Ownable {
     /* --- PUBLIC/EXTERNAL FUNCTIONS --- */
 
     function setAllowCreate(address sender, bool allowed) external onlyOwner {
-        allowCreate[sender] == allowed;
+        allowCreate[sender] = allowed;
         emit UpdateAllowCreate(sender, allowed);
     }
 
     function setAllowPrivate(address sender, bool allowed) external onlyOwner {
-        allowPrivate[sender] == allowed;
+        allowPrivate[sender] = allowed;
         emit UpdateAllowPrivate(sender, allowed);
     }
 
-    function allowedTxType(address sender) public returns (uint32) {
+    function allowedTxType(address sender) public view returns (uint32) {
         uint32 allowedTxTypes = Basic | Call;
 
         if (allowCreate[sender]) {
-            allowedTxTypes | Create;
+            allowedTxTypes |= Create;
         }
 
         if (allowPrivate[sender]) {
-            allowedTxTypes | Call;
+            allowedTxTypes |= Private;
         }
 
         return allowedTxTypes;
