@@ -30,7 +30,7 @@ contract("RelayAllowedTxType", accounts => {
 
     it('Should relay allowedTxType', async () => {
         const expectedType = 3 // Basic (1) + Call (2)
-        const actualType = await relayAllowedTxType.allowedTxType(user)
+        const actualType = await relayAllowedTxType.allowedTxType.call(user)
 
         assert.equal(expectedType.toString(), actualType.toString())
     })

@@ -21,14 +21,14 @@ contract("AllowedTxType", accounts => {
 
     it('Un-authorized User should have Basic and Call permissions by default', async () => {
         const expectedType = 3 // Basic (1) + Call (2)
-        const actualType = await allowedTxType.allowedTxType(unauthorizedUser)
+        const actualType = await allowedTxType.allowedTxType.call(unauthorizedUser)
 
         assert.equal(expectedType.toString(), actualType.toString())
     })
 
     it('Owner should have Create and Private permission by default', async () => {
         const expectedType = 15 // Basic (1) + Call (2) + Create (4) + Private (8)
-        const actualType = await allowedTxType.allowedTxType(owner)
+        const actualType = await allowedTxType.allowedTxType.call(owner)
 
         assert.equal(expectedType.toString(), actualType.toString())
     })
@@ -41,7 +41,7 @@ contract("AllowedTxType", accounts => {
     it('Authorized user should have create permission', async () => {
         await allowedTxType.setAllowCreate(authorizedUser, true, { from: owner }).should.be.fulfilled
         const expectedType = 7 // Basic (1) + Call (2) + Create (4)
-        const actualType = await allowedTxType.allowedTxType(authorizedUser)
+        const actualType = await allowedTxType.allowedTxType.call(authorizedUser)
 
         assert.equal(expectedType.toString(), actualType.toString())
     })
@@ -54,7 +54,7 @@ contract("AllowedTxType", accounts => {
     it('Authorized user should have private permission', async () => {
         await allowedTxType.setAllowPrivate(authorizedUser, true, { from: owner }).should.be.fulfilled
         const expectedType = 11 // Basic (1) + Call (2) + Private (8)
-        const actualType = await allowedTxType.allowedTxType(authorizedUser)
+        const actualType = await allowedTxType.allowedTxType.call(authorizedUser)
 
         assert.equal(expectedType.toString(), actualType.toString())
     })
