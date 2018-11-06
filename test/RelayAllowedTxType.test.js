@@ -19,7 +19,7 @@ contract("RelayAllowedTxType", accounts => {
     let user = accounts[3]
 
     beforeEach(async () => {
-        allowedTxType = await AllowedTxType.new({ from: relayedOwner })
+        allowedTxType = await AllowedTxType.new(relayedOwner, { from: relayedOwner })
         relayAllowedTxType = await RelayAllowedTxType.new(allowedTxType.address, { from: relayOwner })
     })
 

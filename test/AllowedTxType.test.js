@@ -16,7 +16,7 @@ contract("AllowedTxType", accounts => {
     let authorizedUser = accounts[1]
 
     beforeEach(async () => {
-        allowedTxType = await AllowedTxType.new({ from: owner })
+        allowedTxType = await AllowedTxType.new(owner, { from: owner })
     })
 
     it('Un-authorized User should have Basic and Call permissions by default', async () => {

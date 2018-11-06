@@ -29,6 +29,12 @@ contract AllowedTxType is AllowedTxTypeInterface, Ownable {
 
     /* --- PUBLIC/EXTERNAL FUNCTIONS --- */
 
+    // Initialize owner
+    constructor(address _owner) public
+    {
+        owner = _owner;
+    }
+
     function setAllowCreate(address sender, bool allowed) external onlyOwner {
         allowCreate[sender] = allowed;
         emit UpdateAllowCreate(sender, allowed);
