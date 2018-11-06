@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test --network test"
+    "test": "truffle test --network test",
+    "clear-build": "rm -rf build",
+    "build": "npm run clear-build && truffle compile"
   },
   "author": "ContractLand Fundation",
   "license": "MIT",

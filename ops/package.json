@@ -1,0 +1,22 @@
+{
+  "name": "permission-contract-ops",
+  "version": "1.0.0",
+  "description": "Operational scripts for permision contracts",
+  "main": "index.js",
+  "scripts": {
+    "set-allow-create": "node scripts/setAllowCreate.js",
+    "set-allow-private": "node scripts/setAllowPrivate.js",
+    "upgrade-permission-contract": "node scripts/upgradePermissionContract.js",
+    "flatten": "chmod +x ./scripts/flatten.sh && cd scripts && ./flatten.sh"
+  },
+  "author": "Peter He",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "ethereumjs-tx": "^1.3.4",
+    "node-fetch": "^2.1.2",
+    "web3": "^1.0.0-beta.34",
+    "web3-utils": "^1.0.0-beta.34",
+    "truffle-flattener": "^1.2.3"
+  }
+}
