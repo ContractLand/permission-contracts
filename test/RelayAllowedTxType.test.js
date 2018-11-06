@@ -20,7 +20,7 @@ contract("RelayAllowedTxType", accounts => {
 
     beforeEach(async () => {
         allowedTxType = await AllowedTxType.new({ from: relayedOwner })
-        relayAllowedTxType = await RelayAllowedTxType.new({ from: relayOwner })
+        relayAllowedTxType = await RelayAllowedTxType.new(allowedTxType.address, { from: relayOwner })
     })
 
     it('Only relay owner can set relayed', async () => {
@@ -29,8 +29,6 @@ contract("RelayAllowedTxType", accounts => {
     })
 
     it('Should relay allowedTxType', async () => {
-        await relayAllowedTxType.setRelayed(allowedTxType.address, { from: relayOwner }).should.be.fulfilled
-
         const expectedType = 3 // Basic (1) + Call (2)
         const actualType = await relayAllowedTxType.allowedTxType(user)
 
