@@ -26,6 +26,13 @@ contract("AllowedTxType", accounts => {
         assert.equal(expectedType.toString(), actualType.toString())
     })
 
+    it('Owner should have Create and Private permission by default', async () => {
+        const expectedType = 15 // Basic (1) + Call (2) + Create (4) + Private (8)
+        const actualType = await allowedTxType.allowedTxType(owner)
+
+        assert.equal(expectedType.toString(), actualType.toString())
+    })
+
     it('Only owner can update create permissions', async () => {
         await allowedTxType.setAllowCreate(authorizedUser, true, { from: unauthorizedUser }).should.be.rejectedWith(EVMRevert)
         await allowedTxType.setAllowCreate(authorizedUser, true, { from: owner }).should.be.fulfilled

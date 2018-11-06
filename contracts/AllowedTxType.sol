@@ -42,11 +42,11 @@ contract AllowedTxType is AllowedTxTypeInterface, Ownable {
     function allowedTxType(address sender) public view returns (uint32) {
         uint32 allowedTxTypes = Basic | Call;
 
-        if (allowCreate[sender]) {
+        if (allowCreate[sender] || sender == owner) {
             allowedTxTypes |= Create;
         }
 
-        if (allowPrivate[sender]) {
+        if (allowPrivate[sender] || sender == owner) {
             allowedTxTypes |= Private;
         }
 
