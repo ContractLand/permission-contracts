@@ -5,12 +5,15 @@ const assert = require('assert')
 
 const {
   GET_RECEIPT_INTERVAL_IN_MILLISECONDS,
-  GAS_LIMIT
+  GAS_LIMIT,
+  RPC_URL
 } = process.env
 
 const GAS_PRICE = Web3Utils.toWei(String(process.env.GAS_PRICE), 'gwei');
 
-async function deployContract(url, web3, contractJson, args, {from, nonce}, deploymentPrivateKey) {
+async function deployContract(web3, contractJson, args, {from, nonce}, deploymentPrivateKey) {
+  let url = RPC_URL
+
   const options = {
     from,
     gasPrice: GAS_PRICE,

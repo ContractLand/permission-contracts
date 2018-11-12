@@ -8,12 +8,12 @@ const RelayContract = require('../../build/contracts/RelayAllowedTxType.json')
 
 const {
   RPC_URL,
-  RELAYER_OWNER_ACCOUNT_ADDRESS,
-  RELAYER_OWNER_ACCOUNT_PRIVATE_KEY
+  OWNER_ACCOUNT_ADDRESS,
+  OWNER_ACCOUNT_PRIVATE_KEY
 } = process.env
 
 const TOKEN_DECIMAL = 18
-const deploymentPrivateKey = Buffer.from(RELAYER_OWNER_ACCOUNT_PRIVATE_KEY, 'hex')
+const deploymentPrivateKey = Buffer.from(OWNER_ACCOUNT_PRIVATE_KEY, 'hex')
 
 // Foreign setup
 const web3Provider = new Web3.providers.HttpProvider(RPC_URL)
@@ -26,10 +26,10 @@ async function main() {
   console.log('UPGRADING PERMISSION CONTRACT')
   console.log('========================================\n')
 
-  let nonce = await web3Instance.eth.getTransactionCount(RELAYER_OWNER_ACCOUNT_ADDRESS)
+  let nonce = await web3Instance.eth.getTransactionCount(OWNER_ACCOUNT_ADDRESS)
 
   console.log(`\nUpgrading permission contract: `)
-  const txData = await relayContract.methods.setRelayed(inputs.NEW_RELAYED_ADDRESS).encodeABI({from: RELAYER_OWNER_ACCOUNT_ADDRESS})
+  const txData = await relayContract.methods.setRelayed(inputs.NEW_RELAYED_ADDRESS).encodeABI({from: OWNER_ACCOUNT_ADDRESS})
   const tx = await sendRawTx({
     data: txData,
     nonce: nonce,

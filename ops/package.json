@@ -4,6 +4,7 @@
   "description": "Operational scripts for permision contracts",
   "main": "index.js",
   "scripts": {
+    "deploy": "node scripts/deploy.js",
     "set-allow-create": "node scripts/setAllowCreate.js",
     "set-allow-private": "node scripts/setAllowPrivate.js",
     "upgrade-permission-contract": "node scripts/upgradePermissionContract.js",
