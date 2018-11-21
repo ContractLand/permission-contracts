@@ -33,6 +33,8 @@ contract AllowedTxType is AllowedTxTypeInterface, Ownable {
     constructor(address _owner) public
     {
         owner = _owner;
+        allowCreate[owner] = true;
+        allowPrivate[owner] = true;
     }
 
     function setAllowCreate(address sender, bool allowed) external onlyOwner {
@@ -48,11 +50,11 @@ contract AllowedTxType is AllowedTxTypeInterface, Ownable {
     function allowedTxTypes(address sender) public returns (uint32) {
         uint32 allowed = Basic | Call;
 
-        if (allowCreate[sender] || sender == owner) {
+        if (allowCreate[sender]) {
             allowed |= Create;
         }
 
-        if (allowPrivate[sender] || sender == owner) {
+        if (allowPrivate[sender]) {
             allowed |= Private;
         }
 

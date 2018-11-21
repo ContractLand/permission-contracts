@@ -28,9 +28,9 @@ async function main() {
   const relayedSet = await deployContract(web3Instance, AllowedTxType, [OWNER_ACCOUNT_ADDRESS], {from: OWNER_ACCOUNT_ADDRESS, nonce: accountNonce}, ownerPrivateKey)
   accountNonce++
   console.log('AllowedTxType: ', relayedSet.options.address)
-  
+
   console.log('\nDeploying RelayAllowedTxType:')
-  const relaySet = await deployContract(web3Instance, RelayAllowedTxType, [relayedSet.options.address], {from: OWNER_ACCOUNT_ADDRESS, nonce: accountNonce}, ownerPrivateKey)
+  const relaySet = await deployContract(web3Instance, RelayAllowedTxType, [relayedSet.options.address, OWNER_ACCOUNT_ADDRESS], {from: OWNER_ACCOUNT_ADDRESS, nonce: accountNonce}, ownerPrivateKey)
   accountNonce++
   console.log('RelayAllowedTxType: ', relaySet.options.address)
 

@@ -29,6 +29,7 @@ contract RelayAllowedTxType is Ownable, AllowedTxTypeInterface {
 
     // allowed transaction type that calls relayed implementation
     function allowedTxTypes(address sender) public returns(uint32) {
-        return relayed.allowedTxTypes(sender);
+        uint32 allowed = relayed.allowedTxTypes(sender);
+        return allowed;
     }
 }
