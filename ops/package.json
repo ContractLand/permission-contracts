@@ -8,7 +8,7 @@
     "set-allow-create": "node scripts/setAllowCreate.js",
     "set-allow-private": "node scripts/setAllowPrivate.js",
     "upgrade-permission-contract": "node scripts/upgradePermissionContract.js",
-    "flatten": "chmod +x ./scripts/flatten.sh && cd scripts && ./flatten.sh"
+    "flatten": "rm -rf flats && chmod +x ./scripts/flatten.sh && cd scripts && ./flatten.sh"
   },
   "author": "Peter He",
   "license": "ISC",
