@@ -15,9 +15,10 @@ contract RelayAllowedTxType is Ownable, AllowedTxTypeInterface {
     AllowedTxType public relayed;
 
     // Initialize relayed
-    constructor(address _relayed) public
+    constructor(address _relayed, address _owner) public
     {
         relayed = AllowedTxType(_relayed);
+        owner = _owner;
     }
 
     // Set relayed implementation
